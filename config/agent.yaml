@@ -1,0 +1,20 @@
+# Agent Manifest — AgentRegistry entry point
+# This file is required for AgentRegistry auto-discovery (lazy-load architecture)
+
+id: "GOV-C2-093"
+name: "PublicPropertyDisposalEvidenceAgent"
+namespace: "gov"
+version: "0.1.0"
+description: "Municipal Public-Property Disposal Due-Diligence Evidence Reviewer"
+enabled: true
+category: "Cat 2"
+industry: "GOV"
+# L1-direct: inherits AgentBaseGraph directly (no Level-2 base type).
+# Cat 2 fixed pipeline: CaseIntake -> Retrieve -> Normalize -> EvidenceCheck
+# -> PacketAssemble -> OutputValidate — see docs/02_design.md.
+base_type: "AgentBaseGraph"
+class: "src.graph.graph.PublicPropertyDisposalEvidenceAgent"
+required_trust_level: "VERIFIED_EXTERNAL"
+requires:
+  secrets: ["ANTHROPIC_API_KEY"]
+  extras: ["anthropic"]
